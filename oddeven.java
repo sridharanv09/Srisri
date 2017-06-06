@@ -1,4 +1,4 @@
-import java util.scanner;
+import java.util.scanner;
 public class oddeven{
 public static void main(String []args){
 int n;
