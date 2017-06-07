@@ -6,6 +6,6 @@ void main()
 
         for(count=1;count<=5;count++)
         {
-            printf("my name is lord\n");
+            printf("Hello");
         }
 }
