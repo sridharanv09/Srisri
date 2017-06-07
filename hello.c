@@ -4,7 +4,7 @@ void main()
 {
     int count;
 
-        for(count=1;count<=25;count++)
+        for(count=1;count<=5;count++)
         {
             printf("my name is lord\n");
         }
