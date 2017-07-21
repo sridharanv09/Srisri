@@ -1,84 +1,53 @@
-import java.util.Scanner;
-
-
-public class Goal {
-
-public static void main(String[] args) {
-int i=0,c=0,o=1,l,ch,p;
-char[] a=new char[100];
-char[] b=new char[100];
-int val;Scanner sd=new Scanner(System.in);
-        System.out.println("Enter the 1st string:\n");
-String f=sd.nextLine();
-a=f.toCharArray();
-        System.out.println("Enter the 2nd string:\n");
-String g=sd.nextLine();
-b=g.toCharArray();
-while(o==1)
+import java.io.*;
+class Edge
 {
-    System.out.println("1.insert\n");
-    System.out.println("2.delete\n");
-    System.out.println("3.replace\n");
-    System.out.println("4.exit\n");
-    System.out.println("enter your choice\n");
-ch=sd.nextInt();
-if(c<19)
-{
-switch(ch)
-{
-case 1:
-    System.out.println("The cost of the string is 4\n");
-    System.out.println("Enter the position and value where wish to insert:\n");
-p=sd.nextInt();
-val=sd.nextInt();
-l=strlen(a);
-for(i=l-1;i>=p-1;i--)
-{
-a[i+1]=a[i];
+int a,b,t;
 }
-a[l+1]='\0';
-a[p-1]=(char) val;
-    System.out.println("After insertion:\n");
-    System.out.println(""+a);
-c=c+4;
-    System.out.println("Do you want to continue?y->1/no->0\n");
-o=sd.nextInt();
+class kruskalsalgo
+{
+public static void main(String args[])throws IOException
+{
+int ik,j,mincost=0;
+BufferedReader br=new BufferedReader( new InputStreamReader(System.in));
+System.out.println(" Enter no.of vertices:");
+int v=Integer.parseInt(br.readLine());
+System.out.println(" Enter no.of edges:");
+int e=Integer.parseInt(br.readLine());
+Edge ed[]=new Edge[e+1];
+for(ik=1;ik<=e;ik++)
+{
+ed[ik]=new Edge();
+System.out.println(" Enter the vertices and the weight of edge "+(ik)+ ":");
+ed[ik].a=Integer.parseInt(br.readLine());
+ed[ik].b=Integer.parseInt(br.readLine());
+ed[ik].t=Integer.parseInt(br.readLine());
+}
+for(ik=1;ik<=e;ik++)
+for(j=1;j<=e-1;j++)
+{
+if(ed[j].t>ed[j+1].t)
+{
+Edge t=new Edge();
+t=ed[j];
+ed[j]=ed[j+1];
+ed[j+1]=t;
+}
+}
+int visited[]=new int[v+1];
+for(ik=1;ik<=v;ik++)
+visited[ik]=0;
+System.out.println("MINIMUM SPANNING TREE :");
+for(ik=1;ik<=e;ik++)
+{
+if(ik>v)
 break;
-case 2:
-    System.out.println("The cost is 3:\n");
-    System.out.println("Enter the position to delete\n");
-p=sd.nextInt();
-l=strlen(a);
-for(i=p-1;i<l;i++)
+else if( visited[ed[ik].a1]==0 || visited[ed[ik].b]==0)
 {
-a[i]=a[i+1];
-}
-    System.out.println("After deleting\n");
-    System.out.println(""+a);
-c=c+3;
-    System.out.println("Do you want to continue?y->1/no->0\n");
-o=sd.nextInt();
-break;
-case 3:
-    System.out.println("The cost is 5:\n");
-    System.out.println("Enter the position to replace and value\n");
-p=sd.nextInt();
-val=sd.nextInt();
-a[p-1]=(char) val;
-    System.out.println("After replacing\n");
-    System.out.println(""+a);
-c=c+5;
-    System.out.println("Do you want to continue?y->1/n->0\n");
-o=sd.nextInt();
-break;
+System.out.println(ed[ik].a1+ "-"+ ed[ik].b);
+visited[ed[ik].a]=visited[ed[ik].b]=1;
+mincost+=ed[ik].t;
 }
 }
+System.out.println("MINIMUM COST = " +mincost);
 }
-        System.out.println("total cost is "+c);
-
 }
-
-    private static int strlen(char[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-    }
